@@ -29,12 +29,11 @@ jobs:
           AIRTABLE_TOKEN: ${{ secrets.ENGLISH_CENTERS }}
           AIRTABLE_BASE_ID: ${{ vars.AIRTABLE_BASE_ID || 'appUILlDDRhVQl7G0' }}
           AIRTABLE_TABLE_ID: ${{ vars.AIRTABLE_TABLE_ID || 'tbl5BIWKSzPXBnd16' }}
-          AIRTABLE_VIEW_ID: ${{ vars.AIRTABLE_VIEW_ID || 'viwTRsQ5fSUMz2FzF' }}
         run: python scripts/export_airtable.py
 
       - name: Commit changed data
         run: |
-          git add data/english-schools.json
+          git add -A data
           if git diff --cached --quiet; then
             echo "No Airtable changes to commit."
             exit 0
